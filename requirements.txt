@@ -1,0 +1,11 @@
+accelerate
+datasets
+huggingface-hub
+soundfile
+sounddevice
+torch
+torchaudio
+torchtune
+transformers
+wandb
+webdataset

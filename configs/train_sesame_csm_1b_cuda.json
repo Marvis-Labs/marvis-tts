@@ -1,0 +1,12 @@
+{
+    "backbone_flavor": "llama-1B",
+    "decoder_flavor": "llama-100M",
+    "tokenizer": "llama3",
+    "dataset_repo_id": "Marvis-AI/Emilia-YODAS-11M-mimi-smollm2-wds",
+    "audio_num_codebooks": 32,
+    "max_tokens": 8000,
+    "device": "cuda",
+    "precision": "bf16",
+    "pad_multiple": 64,
+    "decoder_fraction": 0.125
+}

@@ -1,0 +1,13 @@
+{
+    "backbone_flavor": "llama-250M",
+    "decoder_flavor": "llama-60M",
+    "tokenizer": "smollm2",
+    "dataset_repo_id": "...",
+    "audio_num_codebooks": 32,
+    "max_tokens": 256,
+    "max_batch_size": 4,
+    "device": "mps",
+    "precision": "fp32",
+    "pad_multiple": 32,
+    "decoder_fraction": 0.15
+}
