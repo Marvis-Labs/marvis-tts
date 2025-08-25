@@ -24,7 +24,7 @@ Currently optimized for English with support for expressive speech synthesis wit
 
 ```bash
 pip install -U mlx-audio
-python -m mlx_audio.tts.generate --model Marvis-AI/marvis-tts-250m-v0.1--text "Hello, world!" --stream --play
+python -m mlx_audio.tts.generate --model Marvis-AI/marvis-tts-250m-v0.1 --text "Hello, world!" --stream --play
 ```
 
 ## Using transformers
