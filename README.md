@@ -24,7 +24,8 @@ Currently optimized for English with support for expressive speech synthesis wit
 
 ```bash
 pip install -U mlx-audio
-python -m mlx_audio.tts.generate --model Marvis-AI/marvis-tts-250m-v0.1 --text "Hello, world!" --stream --play
+python -m mlx_audio.tts.generate --model Marvis-AI/marvis-tts-250m-v0.1  --stream \
+ --text "Marvis TTS is a new text-to-speech model that provides fast streaming on edge devices."
 ```
 
 ## Using transformers
@@ -44,7 +45,7 @@ processor = AutoProcessor.from_pretrained(model_id)
 model = CsmForConditionalGeneration.from_pretrained(model_id, device_map=device)
 
 # prepare the inputs
-text = "[0]Hello from Marvis." # `[0]` for speaker id 0
+text = "[0]Marvis TTS is a new text-to-speech model that provides fast streaming on edge devices." # `[0]` for speaker id 0
 inputs = processor(text, add_special_tokens=True, return_tensors="pt").to(device).pop("token_type_ids")
 # infer the model
 audio = model.generate(**inputs, output_audio=True)
@@ -55,13 +56,13 @@ sf.write("example_without_context.wav", audio[0].cpu(), samplerate=24_000, subty
 
 # Model Description
 
-Marvis is built on the [Sesame CSM-1B](https://huggingface.co/sesame/csm-1b) (Conversational Speech Model) architecture, a multimodal transformer that operates directly on Residual Vector Quantization (RVQ) tokens and uses [Kyutai's mimi codec](https://huggingface.co/kyutai/mimi). The model employs a dual-transformer approach:
+Marvis is built on the [Sesame CSM-1B](https://huggingface.co/sesame/csm-1b) (Conversational Speech Model) architecture, a multimodal transformer that operates directly on Residual Vector Quantization (RVQ) tokens and uses [Kyutai's mimi codec](https://huggingface.co/kyutai/mimi). The architecture enables end-to-end training while maintaining low-latency generation and employs a dual-transformer approach:
 
-**Multimodal Backbone (250M parameters)**: Processes interleaved text and audio sequences to model the zeroth codebook level, providing semantic understanding and context.
+- **Multimodal Backbone (250M parameters)**: Processes interleaved text and audio sequences to model the zeroth codebook level, providing semantic understanding and context.
 
-**Audio Decoder (60M parameters)**: A smaller, specialized transformer that models the remaining 31 codebook levels to reconstruct high-quality speech from the backbone's representations.
+- **Audio Decoder (60M parameters)**: A smaller, specialized transformer that models the remaining 31 codebook levels to reconstruct high-quality speech from the backbone's representations.
 
-The architecture enables end-to-end training while maintaining low-latency generation. Text tokens are processed via a SmolLM2 tokenizer, while audio is handled through the Mimi codec, producing one semantic codebook and 31 acoustic codebooks per frame at 12.5 Hz.
+Unlike models that require text chunking based on regex patterns, Marvis processes entire text sequences contextually, resulting in more natural speech flow and intonation.
 
 **Key Architectural Innovation**: Unlike models that require text chunking based on regex patterns, Marvis processes entire text sequences contextually, resulting in more natural speech flow and intonation.
 
