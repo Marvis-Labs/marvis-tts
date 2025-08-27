@@ -62,8 +62,6 @@ Marvis is built on the [Sesame CSM-1B](https://huggingface.co/sesame/csm-1b) (Co
 
 - **Audio Decoder (60M parameters)**: A smaller, specialized transformer that models the remaining 31 codebook levels to reconstruct high-quality speech from the backbone's representations.
 
-Unlike models that require text chunking based on regex patterns, Marvis processes entire text sequences contextually, resulting in more natural speech flow and intonation.
-
 **Key Architectural Innovation**: Unlike models that require text chunking based on regex patterns, Marvis processes entire text sequences contextually, resulting in more natural speech flow and intonation.
 
 # Training Details
